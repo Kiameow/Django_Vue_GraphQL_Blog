@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import * as Vue from 'vue'
+import * as VueRouter from 'vue-router'
 
 import Post from '@/components/Post'
 import Author from '@/components/Author'
 import PostsByTag from '@/components/PostsByTag'
 import AllPosts from '@/components/AllPosts'
-
-Vue.use(VueRouter)
+import App from '@/App'
+// Vue.use(VueRouter)
 
 const routes = [
   { path: '/author/:username', component: Author },
@@ -15,8 +15,9 @@ const routes = [
   { path: '/', component: AllPosts },
 ]
 
-const router = new VueRouter({
-  routes: routes,
-  mode: 'history',
+export const router = VueRouter.createRouter({
+  history: VueRouter.createWebHistory(),
+  routes,
 })
-export default router
+// export default router
+Vue.createApp(App).use(router).mount('#app')
